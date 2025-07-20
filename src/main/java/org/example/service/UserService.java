@@ -1,36 +1,19 @@
 package org.example.service;
 
-import org.example.dao.UserDAO;
+import org.example.dto.UserDto;
 import org.example.model.User;
 
 import java.util.List;
 
-public class UserService {
+public interface UserService {
 
-    private final UserDAO userDAO;
+    User createUser(UserDto dto);
 
-    public UserService(UserDAO userDAO) {
-        this.userDAO = userDAO;
-    }
+    List<User> getAllUsers();
 
-    public void registerUser(User user) {
-        // Простейшая логика
-        userDAO.save(user);
-    }
+    User getUserById(Long id);
 
-    public User getUser(Long id) {
-        return userDAO.findById(id);
-    }
+    User updateUser(Long id, UserDto userDto);
 
-    public List<User> getAllUsers() {
-        return userDAO.findAll();
-    }
-
-    public void updateUser(User user) {
-        userDAO.update(user);
-    }
-
-    public void deleteUser(Long id) {
-        userDAO.delete(id);
-    }
+    void deleteUser(Long id);
 }
