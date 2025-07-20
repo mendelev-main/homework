@@ -1,7 +1,14 @@
 package org.example.model;
 
-import javax.persistence.*;
-import java.time.DateTimeException;
+
+import javax.persistence.Entity;
+import javax.persistence.Table;
+import javax.persistence.Id;
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -19,11 +26,11 @@ public class User {
     @Column(nullable = false, unique = true)
     private String email;
 
+    @Column(nullable = false)
     private int age;
 
-    @Column(name = "created_at")
+    @Column(name = "created_at", nullable = false)
     private LocalDateTime createdAt;
-
 
     public User() {
         this.createdAt = LocalDateTime.now();
@@ -34,6 +41,14 @@ public class User {
         this.email = email;
         this.age = age;
         this.createdAt = LocalDateTime.now();
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long newId) {
+        this.id = newId;
     }
 
     public String getName() {
@@ -58,6 +73,14 @@ public class User {
 
     public void setAge(int age) {
         this.age = age;
+    }
+
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
     }
 
     @Override
